@@ -1,5 +1,6 @@
 import React from 'react'
- 
+import busca from './components/busca'
+
 
 const App = () => {
   return (
@@ -7,6 +8,7 @@ const App = () => {
       <h1>
         Hello P1
       </h1>
+      <Busca/>
     </div>
 
   )
