@@ -27,6 +27,7 @@ export default class Busca extends Component {
               <InputIcon className='pi pi-search'></InputIcon>
               <InputText
                 id="inputCep" className="w-full" onChange={this.onTermoAlterado} value={this.state.termoDeBusca}
+                placeholder={this.props.dica}
               />
                 <label htmlFor="inputCep"></label>
             </IconField>

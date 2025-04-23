@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Busca from './components/Busca';
 import LocalidadeLista from './components/LocalidadeLista';
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primeicons/primeicons.css'
 import cepClient from "./utils/cepClient.js"
 
-const App = () => {
-  const onBuscaRealizada = (cep) => {
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      localidades: []
+    }
+  }
+
+
+  onBuscaRealizada = (cep) => {
     if (cep == "") {
       alert("CEP inválido!")
       return
@@ -30,16 +39,17 @@ const App = () => {
       this.setState({localidades: [response.data, ...this.state.localidades]})
     })
     
+    
   };
 
+  render() {
+    return (
+      <div className="p-4">
+        <h2>Hello, P1</h2>
+        <Busca onBuscaRealizada={this.onBuscaRealizada} />
+        <LocalidadeLista localidades={this.state.localidades}/>
+      </div>
+    );
 
-  return (
-    <div className="p-4">
-      <h2>Hello, P1</h2>
-      <Busca onBuscaRealizada={onBuscaRealizada} />
-      <LocalidadeLista />
-    </div>
-  );
+  }
 };
-
-export default App;
