@@ -7,14 +7,17 @@ import cepClient from "./utils/cepClient.js"
 
 export default class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      localidades: []
-    }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     localidades: []
+  //   }
+  // }
+
+  state = {
+    localidades: null
   }
-
-
+  
   onBuscaRealizada = (cep) => {
     if (cep == "") {
       alert("CEP inválido!")
