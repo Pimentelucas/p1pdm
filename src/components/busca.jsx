@@ -15,7 +15,7 @@ export default class Busca extends Component {
   
     onFormSubmit = (event) => {
       event.preventDefault()
-      alert("Você digitou o seguinte CEP: " + this.state.termoDeBusca)
+      // alert("Você digitou o seguinte CEP: " + this.state.termoDeBusca)
       this.props.onBuscaRealizada(this.state.termoDeBusca)
     }
   
@@ -26,11 +26,9 @@ export default class Busca extends Component {
             <IconField iconPosition='left'>
               <InputIcon className='pi pi-search'></InputIcon>
               <InputText
-                className='w-full'
-                placeholder={this.props.dica}
-                value={this.state.termoDeBusca}
-                onChange={this.onTermoAlterado}
+                id="inputCep" className="w-full" onChange={this.onTermoAlterado} value={this.state.termoDeBusca}
               />
+                <label htmlFor="inputCep"></label>
             </IconField>
             <Button
               type="submit"
