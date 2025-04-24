@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Busca from './components/Busca';
+import Busca from './components/busca.jsx';
 import LocalidadeLista from './components/LocalidadeLista';
-import 'primereact/resources/themes/saga-blue/theme.css'
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primeicons/primeicons.css'
 import cepClient from "./utils/cepClient.js"
 import GraficoEstados from './components/GraficoEstados.jsx';
+import './App.css';
 
 export default class App extends Component {
 

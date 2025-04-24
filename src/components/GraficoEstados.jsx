@@ -5,33 +5,10 @@ export default class GraficoEstados extends Component {
   constructor(props) {
     super(props);
 
-    const documentStyle = getComputedStyle(document.documentElement);
-    const estados = this.contarEstados(this.props.localidades);
-
     this.state = {
       chartData: {
-        labels: Object.keys(estados),
-        datasets: [
-          {
-            data: Object.values(estados),
-            backgroundColor: [
-              documentStyle.getPropertyValue('--blue-500'),
-              documentStyle.getPropertyValue('--yellow-500'),
-              documentStyle.getPropertyValue('--green-500'),
-              documentStyle.getPropertyValue('--red-500'),
-              documentStyle.getPropertyValue('--pink-500'),
-              documentStyle.getPropertyValue('--cyan-500')
-            ],
-            hoverBackgroundColor: [
-              documentStyle.getPropertyValue('--blue-400'),
-              documentStyle.getPropertyValue('--yellow-400'),
-              documentStyle.getPropertyValue('--green-400'),
-              documentStyle.getPropertyValue('--red-400'),
-              documentStyle.getPropertyValue('--pink-400'),
-              documentStyle.getPropertyValue('--cyan-400')
-            ]
-          }
-        ]
+        labels: [],
+        datasets: []
       },
       chartOptions: {
         plugins: {
@@ -39,23 +16,67 @@ export default class GraficoEstados extends Component {
             labels: {
               usePointStyle: true
             }
+          },
+          title: {
+            display: true,
+            text: 'Buscas por Estado (UF)',
+            font : {
+              size: 18
+            },
+            color: '#f0f0f0'
           }
         }
       }
     };
   }
 
+  componentDidMount() {
+    this.atualizarGrafico(this.props.localidades);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.localidades !== this.props.localidades) {
+      this.atualizarGrafico(this.props.localidades);
+    }
+  }
+
   contarEstados(localidades) {
     const contagem = {};
     localidades.forEach(local => {
       const estado = local.uf;
-      if (contagem[estado]) {
-        contagem[estado]++;
-      } else {
-        contagem[estado] = 1;
-      }
+      contagem[estado] = (contagem[estado] || 0) + 1;
     });
     return contagem;
+  }
+
+  atualizarGrafico(localidades) {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const estados = this.contarEstados(localidades);
+    const cores = [
+      '--orange-500', '--purple-500', '--teal-500',
+      '--indigo-500', '--lime-500', '--bluegray-500'
+    ];
+    const hoverCores = [
+      '--orange-400', '--purple-400', '--teal-400',
+      '--indigo-400', '--lime-400', '--bluegray-400'
+    ];
+
+    this.setState({
+      chartData: {
+        labels: Object.keys(estados),
+        datasets: [
+          {
+            data: Object.values(estados),
+            backgroundColor: Object.keys(estados).map((_, i) =>
+              documentStyle.getPropertyValue(cores[i % cores.length])
+            ),
+            hoverBackgroundColor: Object.keys(estados).map((_, i) =>
+              documentStyle.getPropertyValue(hoverCores[i % hoverCores.length])
+            )
+          }
+        ]
+      }
+    });
   }
 
   render() {

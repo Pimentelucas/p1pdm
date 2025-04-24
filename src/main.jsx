@@ -5,6 +5,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import './index.css'
 import App from './App.jsx'
+import 'primereact/resources/themes/vela-blue/theme.css';
 
 
 createRoot(document.getElementById('root')).render(
