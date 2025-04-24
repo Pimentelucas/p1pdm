@@ -14,7 +14,8 @@ export default class GraficoEstados extends Component {
         plugins: {
           legend: {
             labels: {
-              usePointStyle: true
+              usePointStyle: true,
+              color: '#f1f1f1'
             }
           },
           title: {
