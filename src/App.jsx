@@ -4,6 +4,7 @@ import LocalidadeLista from './components/LocalidadeLista';
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primeicons/primeicons.css'
 import cepClient from "./utils/cepClient.js"
+import GraficoEstados from './components/GraficoEstados.jsx';
 
 export default class App extends Component {
 
@@ -51,6 +52,7 @@ export default class App extends Component {
         <h2>Hello, P1</h2>
         <Busca onBuscaRealizada={this.onBuscaRealizada} />
         <LocalidadeLista localidades={this.state.localidades}/>
+        <GraficoEstados localidades={this.state.localidades} />
       </div>
     );
 
