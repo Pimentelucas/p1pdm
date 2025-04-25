@@ -31,6 +31,9 @@ const GraficoEstados = ({ localidades }) => {
                     labels: estados,
                     datasets: [{
                         data: Object.values(contagem),
+                        backgroundColor: estados.map((_, i) => data.cores[i % data.cores.length]),
+                        hoverBackgroundColor: estados.map((_, i) => data.HoverCores[i % data.HoverCores.length])
+
                     }]
                 }} />
             </div>
