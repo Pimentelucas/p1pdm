@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Chart } from 'primereact/chart/';
+import { Chart } from 'primereact/chart';
 
 export default class GraficoEstados extends Component {
   constructor(props) {
@@ -21,12 +21,14 @@ export default class GraficoEstados extends Component {
           title: {
             display: true,
             text: 'Buscas por Estado (UF)',
-            font : {
+            font: {
               size: 18
             },
-            color: '#f0f0f0'
+            color: '#f1f1f1'
           }
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false
       }
     };
   }
@@ -82,12 +84,11 @@ export default class GraficoEstados extends Component {
 
   render() {
     return (
-      <div className="card flex justify-content-center mt-4">
+      <div className="chart-wrapper h-96">
         <Chart
           type="pie"
           data={this.state.chartData}
           options={this.state.chartOptions}
-          className="w-full md:w-30rem"
         />
       </div>
     );
